@@ -50,11 +50,13 @@ export async function createTestDb(): Promise<Db> {
   return db;
 }
 
-let shared: Promise<Db> | undefined;
+// Next bundles route handlers and server components separately, so a module-level variable
+// would give each its own database. Keep the connection on globalThis so there is only one.
+const globalForDb = globalThis as typeof globalThis & { __db?: Promise<Db> };
 
 /** The app's database: Neon when DATABASE_URL is set, otherwise local PGlite. */
 export function getDb(): Promise<Db> {
-  shared ??= (async () => {
+  globalForDb.__db ??= (async () => {
     if (process.env.DATABASE_URL) {
       const { neon } = await import("@neondatabase/serverless");
       const sql = neon(process.env.DATABASE_URL);
@@ -72,6 +74,6 @@ export function getDb(): Promise<Db> {
     await migrate(db, pg);
     return db;
   })();
-  shared.catch(() => (shared = undefined));
-  return shared;
+  globalForDb.__db.catch(() => (globalForDb.__db = undefined));
+  return globalForDb.__db;
 }

@@ -16,6 +16,7 @@ function ToolbarButton(props: { label: string; active?: boolean; onClick: () => 
       aria-label={props.label}
       title={props.label}
       aria-pressed={props.active ?? false}
+      onMouseDown={(e) => e.preventDefault()} // keep focus (and the selection) in the editor
       onClick={props.onClick}
     >
       {props.children}
