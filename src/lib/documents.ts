@@ -37,7 +37,7 @@ function textToHtml(text: string): string {
 export interface DocumentsService {
   /** Creates a new Document from an uploaded `.txt` file (max 1 MB). */
   importTxt(owner: string, file: { name: string; bytes: Uint8Array }): Promise<DocumentRecord>;
-  /** Owner-only. Grants `target` access; never revoked. */
+  /** Owner-only. Makes `target` a Collaborator; never revoked. */
   share(username: string, id: string, target: string): Promise<void>;
   get(username: string, id: string): Promise<DocumentRecord>;
   save(

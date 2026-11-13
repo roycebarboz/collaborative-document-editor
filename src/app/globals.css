@@ -22,7 +22,7 @@ h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
 .btn:disabled { opacity: .6; cursor: default; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 .visually-hidden-input, .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.visually-hidden-input:focus-visible + .muted { outline: 3px solid var(--accent); }
+.btn:has(+ .visually-hidden-input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
 .user-list, .doc-list { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .5rem; }
 .doc-list li { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .6rem .9rem; }
 .title-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
