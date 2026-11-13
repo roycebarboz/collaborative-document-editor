@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# local database (PGlite data dir for local dev)
+.data/
+
+# env files (DATABASE_URL etc.)
+.env
+.env*.local
+
+# Vercel
+.vercel/
+
+# test / coverage
+coverage/
+
+# logs & OS
+npm-debug.log*
+.DS_Store
